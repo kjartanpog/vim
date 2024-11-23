@@ -1,24 +1,37 @@
 set nocompatible
 set hidden
+set autoread
 set backspace=indent,eol,start
-set laststatus=2 " Always show statusline
-set showcmd " Show (partial) command in the last line of the screen.
-
-set ignorecase " Applies case insensitive search for lowercase input
-set smartcase " Highlight matching search patterns
-set hlsearch " Show pattern while typing a search command
-
+set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
+set showcmd
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wildmenu
+set wildmode=longest:full,full
+set timeoutlen=0
 set nu rnu
+set noswapfile
 
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
 
-set wildmenu
-set wildmode=longest:full,full " More Bash like tab completions
+nnoremap <SPACE> <Nop>
+let mapleader="\<Space>"
+noremap <Leader>y "+y
+noremap <Leader>d "+d
+noremap <Leader>p "+p
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-let &t_VS = "\e[2 q" " cursor normally visible (no blink)
-let &t_SI = "\e[5 q" " start insert mode (bar cursor shape)
-let &t_SR = "\e[3 q" " start replace mode (underline cursor shape)
-let &t_EI = "\e[2 q" " end insert or replace mode (block cursor shape)
+set listchars=tab:>\ ,extends:>,precedes:<,trail:~
+autocmd InsertEnter * set listchars-=trail:~
+autocmd InsertLeave * set listchars+=trail:~
+
+let &t_VS = "\e[2 q"
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[2 q"
